@@ -69,6 +69,7 @@ class TrueSheetViewController: UIViewController, UISheetPresentationControllerDe
     
 
     let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow })
+    window?.overrideUserInterfaceStyle = .dark
     bottomInset = window?.safeAreaInsets.bottom ?? 0
 
     super.init(nibName: nil, bundle: nil)
