@@ -35,7 +35,7 @@ class TrueSheetViewController: UIViewController, UISheetPresentationControllerDe
   /// The bottomInset of the sheet.
   /// We will be excluding these on height calculation for conistency with scrollable content.
   private var bottomInset: CGFloat
-  private var backgroundView: UIVisualEffectView
+  private var backgroundView: UIVisualEffectView?
 
   var lastViewWidth: CGFloat = 0
   var detentValues: [String: SizeInfo] = [:]
@@ -66,18 +66,21 @@ class TrueSheetViewController: UIViewController, UISheetPresentationControllerDe
   // MARK: - Setup
 
   init() {
-    backgroundView = UIVisualEffectView()
+    
 
     let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow })
     bottomInset = window?.safeAreaInsets.bottom ?? 0
 
     super.init(nibName: nil, bundle: nil)
 
-    backgroundView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    backgroundView.frame = view.bounds
+    if #unavailable(iOS 26.0) {
+        backgroundView = UIVisualEffectView()
+        backgroundView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        backgroundView?.frame = view.bounds
 
-    view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-    view.insertSubview(backgroundView, at: 0)
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        view.insertSubview(backgroundView!, at: 0)
+    }
   }
 
   deinit {
@@ -163,13 +166,15 @@ class TrueSheetViewController: UIViewController, UISheetPresentationControllerDe
   /// Setup background. Supports color or blur effect.
   /// Can only use one or the other.
   func setupBackground() {
-    if let blurEffect {
-      backgroundView.effect = blurEffect
-      backgroundView.backgroundColor = nil
-    } else {
-      backgroundView.backgroundColor = backgroundColor
-      backgroundView.effect = nil
-    }
+      if let backgroundView{
+          if let blurEffect {
+              backgroundView.effect = blurEffect
+              backgroundView.backgroundColor = nil
+          } else {
+              backgroundView.backgroundColor = backgroundColor
+              backgroundView.effect = nil
+          }
+      }
   }
 
   /// Setup dimmed sheet.
