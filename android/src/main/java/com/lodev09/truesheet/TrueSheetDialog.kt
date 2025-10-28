@@ -31,6 +31,8 @@ class TrueSheetDialog(private val reactContext: ThemedReactContext, private val 
       null
     }
 
+  private var dimmedAreaPressListener: (() -> Unit)? = null
+
   private val sheetContainerView: ViewGroup?
     get() = rootSheetView.parent?.let { it as? ViewGroup }
 
@@ -142,13 +144,17 @@ class TrueSheetDialog(private val reactContext: ThemedReactContext, private val 
    * Setup dimmed sheet.
    * `dimmedIndex` will further customize the dimming behavior.
    */
+  @SuppressLint("ClickableViewAccessibility")
   fun setupDimmedBackground(sizeIndex: Int) {
     window?.apply {
       val view = findViewById<View>(com.google.android.material.R.id.touch_outside)
 
       if (dimmed && sizeIndex >= dimmedIndex) {
-        // Remove touch listener
-        view.setOnTouchListener(null)
+        view.setOnTouchListener { _, _ ->
+          dimmedAreaPressListener?.invoke()
+          true
+        }
+
 
         // Add the dimmed background
         setFlags(
@@ -156,6 +162,8 @@ class TrueSheetDialog(private val reactContext: ThemedReactContext, private val 
           WindowManager.LayoutParams.FLAG_DIM_BEHIND
         )
 
+        // This will be set based on the `dismissible` property,
+        // but our OnTouchListener above will intercept the tap first.
         setCanceledOnTouchOutside(dismissible)
       } else {
         // Override the background touch and pass it to the components outside
@@ -309,6 +317,11 @@ class TrueSheetDialog(private val reactContext: ThemedReactContext, private val 
 
   fun setOnSizeChangeListener(listener: (w: Int, h: Int) -> Unit) {
     rootSheetView.sizeChangeListener = listener
+  }
+
+
+  fun setOnDimmedAreaPressListener(value: () -> Unit) {
+    this.dimmedAreaPressListener = value
   }
 
   /**

@@ -81,6 +81,11 @@ class TrueSheetView(context: Context) :
         dispatchEvent(TrueSheetEvent.CONTAINER_SIZE_CHANGE, data)
       }
 
+
+      setOnDimmedAreaPressListener {
+        dispatchEvent(TrueSheetEvent.DIMMED_AREA_PRESSED)
+      }
+
       // Setup listener when the dialog has been presented.
       setOnShowListener {
         registerKeyboardManager()
@@ -126,7 +131,7 @@ class TrueSheetView(context: Context) :
               BottomSheetBehavior.STATE_DRAGGING,
               BottomSheetBehavior.STATE_SETTLING -> handleDragChange(sheetView)
 
-              else -> { }
+              else -> {}
             }
 
             footerView?.let {
@@ -153,7 +158,7 @@ class TrueSheetView(context: Context) :
               BottomSheetBehavior.STATE_COLLAPSED,
               BottomSheetBehavior.STATE_HALF_EXPANDED -> handleDragEnd(newState)
 
-              else -> { }
+              else -> {}
             }
           }
         }
