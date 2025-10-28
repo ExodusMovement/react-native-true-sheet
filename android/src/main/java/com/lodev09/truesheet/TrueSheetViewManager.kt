@@ -44,7 +44,8 @@ class TrueSheetViewManager : ViewGroupManager<TrueSheetView>() {
       TrueSheetEvent.DRAG_BEGIN to MapBuilder.of("registrationName", "onDragBegin"),
       TrueSheetEvent.DRAG_CHANGE to MapBuilder.of("registrationName", "onDragChange"),
       TrueSheetEvent.DRAG_END to MapBuilder.of("registrationName", "onDragEnd"),
-      TrueSheetEvent.CONTAINER_SIZE_CHANGE to MapBuilder.of("registrationName", "onContainerSizeChange")
+      TrueSheetEvent.CONTAINER_SIZE_CHANGE to MapBuilder.of("registrationName", "onContainerSizeChange"),
+      TrueSheetEvent.DIMMED_AREA_PRESSED to MapBuilder.of("registrationName", "onDimmedAreaPress")
     )
 
   @ReactProp(name = "edgeToEdge")
@@ -124,7 +125,7 @@ class TrueSheetViewManager : ViewGroupManager<TrueSheetView>() {
         // changed it to String?. Suppress the error for older APIs.
         @Suppress("UNNECESSARY_SAFE_CALL")
         ReadableType.String
-        -> sizes.getString(i)?.let { result.add(it) }
+          -> sizes.getString(i)?.let { result.add(it) }
 
         else -> Log.d(TAG, "Invalid type")
       }

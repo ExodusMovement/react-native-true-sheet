@@ -177,7 +177,11 @@ class TrueSheetViewController: UIViewController, UISheetPresentationControllerDe
 
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(animated)
-    delegate?.viewControllerDidDismiss()
+    if let recognizer = customDimmingTapRecognizer {
+      recognizer.view?.removeGestureRecognizer(recognizer)
+      customDimmingTapRecognizer = nil
+    }
+    delegate?.viewControllerDidDismiss() 
   }
 
   /// This is called multiple times while sheet is being dragged.
