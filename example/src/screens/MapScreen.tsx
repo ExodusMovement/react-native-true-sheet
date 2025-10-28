@@ -7,7 +7,7 @@ import {
   type TextStyle,
   type ViewStyle,
 } from 'react-native'
-import { TrueSheet, type SizeInfo } from '@lodev09/react-native-true-sheet'
+import { TrueSheet, type SizeInfo } from '@exodus/react-native-true-sheet'
 import MapView from 'react-native-maps'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Animated, { useSharedValue, withSpring, useAnimatedStyle } from 'react-native-reanimated'

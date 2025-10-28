@@ -1,6 +1,6 @@
 import { forwardRef, useRef, type Ref } from 'react'
 import { FlatList, View, type ViewStyle } from 'react-native'
-import { TrueSheet, type TrueSheetProps } from '@lodev09/react-native-true-sheet'
+import { TrueSheet, type TrueSheetProps } from '@exodus/react-native-true-sheet'
 
 import { DARK, DARK_GRAY, INPUT_HEIGHT, SPACING, times } from '../../utils'
 import { Input } from '../Input'

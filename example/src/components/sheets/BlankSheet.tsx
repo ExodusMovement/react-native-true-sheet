@@ -1,6 +1,6 @@
 import { forwardRef, type Ref } from 'react'
 import { StyleSheet, Text } from 'react-native'
-import { TrueSheet, type TrueSheetProps } from '@lodev09/react-native-true-sheet'
+import { TrueSheet, type TrueSheetProps } from '@exodus/react-native-true-sheet'
 
 import { $WHITE_TEXT, DARK, SPACING } from '../../utils'
 

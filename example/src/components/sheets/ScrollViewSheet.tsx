@@ -1,6 +1,6 @@
 import { forwardRef, useRef, type Ref } from 'react'
 import { ScrollView, type ViewStyle } from 'react-native'
-import { TrueSheet, type TrueSheetProps } from '@lodev09/react-native-true-sheet'
+import { TrueSheet, type TrueSheetProps } from '@exodus/react-native-true-sheet'
 
 import { FOOTER_HEIGHT, SPACING, times } from '../../utils'
 import { Footer } from '../Footer'
