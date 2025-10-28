@@ -20,6 +20,7 @@ class TrueSheetView: UIView, RCTInvalidating, TrueSheetViewControllerDelegate {
   @objc var onDragBegin: RCTDirectEventBlock?
   @objc var onDragChange: RCTDirectEventBlock?
   @objc var onDragEnd: RCTDirectEventBlock?
+  @objc var onDimmedAreaPress: RCTDirectEventBlock?
 
   // MARK: - React Properties
 
@@ -192,6 +193,10 @@ class TrueSheetView: UIView, RCTInvalidating, TrueSheetViewControllerDelegate {
     default:
       Logger.info("Drag state is not supported")
     }
+  }
+  
+  func viewControllerDidPressDimmedArea() {
+    dispatchEvent(name: "onDimmedAreaPress", block: onDimmedAreaPress, data: nil)
   }
 
   func viewControllerWillAppear() {

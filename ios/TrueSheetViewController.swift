@@ -23,6 +23,7 @@ protocol TrueSheetViewControllerDelegate: AnyObject {
   func viewControllerKeyboardWillShow(_ keyboardHeight: CGFloat)
   func viewControllerKeyboardWillHide()
   func viewControllerDidDrag(_ state: UIPanGestureRecognizer.State, _ height: CGFloat)
+  func viewControllerDidPressDimmedArea()
 }
 
 // MARK: - TrueSheetViewController
@@ -36,6 +37,7 @@ class TrueSheetViewController: UIViewController, UISheetPresentationControllerDe
   /// We will be excluding these on height calculation for conistency with scrollable content.
   private var bottomInset: CGFloat
   private var backgroundView: UIVisualEffectView?
+  private var customDimmingTapRecognizer: UITapGestureRecognizer?
 
   var lastViewWidth: CGFloat = 0
   var detentValues: [String: SizeInfo] = [:]
@@ -146,6 +148,31 @@ class TrueSheetViewController: UIViewController, UISheetPresentationControllerDe
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     delegate?.viewControllerWillAppear()
+    
+    guard let containerView = sheetPresentationController?.containerView,
+          let dimmingView = containerView.subviews.first else {
+      return
+    }
+    
+    if let existingGestures = dimmingView.gestureRecognizers {
+      for gesture in existingGestures {
+        if gesture is UITapGestureRecognizer {
+          gesture.isEnabled = false
+        }
+      }
+    }
+    
+    if customDimmingTapRecognizer == nil {
+      let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleDimmedAreaTap))
+      dimmingView.addGestureRecognizer(tapRecognizer)
+      self.customDimmingTapRecognizer = tapRecognizer
+    }
+  }
+  
+  @objc
+  private func handleDimmedAreaTap() {
+    delegate?.viewControllerDidPressDimmedArea()
+    
   }
 
   override func viewDidDisappear(_ animated: Bool) {

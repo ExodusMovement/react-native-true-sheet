@@ -298,4 +298,9 @@ export interface TrueSheetProps extends ViewProps {
    * @platform ios 15+
    */
   onDragEnd?: (event: DragEndEvent) => void
+
+  /**
+   * Called when dimmed area is pressed
+   */
+  onDimmedAreaPress?: () => void
 }

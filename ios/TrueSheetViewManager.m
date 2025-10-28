@@ -31,6 +31,7 @@ RCT_EXPORT_VIEW_PROPERTY(onDragBegin, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onDragChange, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onDragEnd, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onContainerSizeChange, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onDimmedAreaPress, RCTDirectEventBlock)
 
 // Properties
 RCT_EXPORT_VIEW_PROPERTY(scrollableHandle, NSNumber)
