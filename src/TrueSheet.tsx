@@ -82,6 +82,7 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
     this.onContentLayout = this.onContentLayout.bind(this)
     this.onFooterLayout = this.onFooterLayout.bind(this)
     this.onContainerSizeChange = this.onContainerSizeChange.bind(this)
+    this.onDimmedAreaPress = this.onDimmedAreaPress.bind(this)
 
     this.state = {
       containerWidth: undefined,
@@ -202,6 +203,10 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
     this.props.onDragEnd?.(event)
   }
 
+  private onDimmedAreaPress(): void {
+    this.props.onDimmedAreaPress?.()
+  }
+
   /**
    * Present the sheet. Optionally accepts a size `index`.
    * See `sizes` prop
@@ -290,6 +295,7 @@ export class TrueSheet extends PureComponent<TrueSheetProps, TrueSheetState> {
         onDragChange={this.onDragChange}
         onDragEnd={this.onDragEnd}
         onContainerSizeChange={this.onContainerSizeChange}
+        onDimmedAreaPress={this.onDimmedAreaPress}
       >
         <View
           collapsable={false}
