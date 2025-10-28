@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { View, type ViewStyle } from 'react-native'
-import type { TrueSheet } from '@lodev09/react-native-true-sheet'
+import type { TrueSheet } from '@exodus/react-native-true-sheet'
 
 import { BLUE, SPACING } from '../utils'
 import { Button } from '../components'

@@ -1,7 +1,7 @@
 # React Native True Sheet
 
 [![CI](https://github.com/lodev09/react-native-true-sheet/actions/workflows/ci.yml/badge.svg)](https://github.com/lodev09/react-native-true-sheet/actions/workflows/ci.yml)
-[![NPM Downloads](https://img.shields.io/npm/d18m/%40lodev09%2Freact-native-true-sheet)](https://www.npmjs.com/package/@lodev09/react-native-true-sheet)
+[![NPM Downloads](https://img.shields.io/npm/d18m/%40lodev09%2Freact-native-true-sheet)](https://www.npmjs.com/package/@exodus/react-native-true-sheet)
 
 The true native bottom sheet experience for your React Native Apps. 💩
 
@@ -9,20 +9,21 @@ The true native bottom sheet experience for your React Native Apps. 💩
 
 ## Features
 
-* Implemented in the native realm.
-* Clean, fast, and lightweight.
-* Asynchronus `ref` [methods](https://sheet.lodev09.com/reference/methods#ref-methods).
-* Bonus! [Blur](https://sheet.lodev09.com/reference/types#blurtint) support on IOS 😎
+- Implemented in the native realm.
+- Clean, fast, and lightweight.
+- Asynchronus `ref` [methods](https://sheet.lodev09.com/reference/methods#ref-methods).
+- Bonus! [Blur](https://sheet.lodev09.com/reference/types#blurtint) support on IOS 😎
 
 ## Installation
 
 You can install the package by using either `yarn` or `npm`.
 
 ```sh
-yarn add @lodev09/react-native-true-sheet
+yarn add @exodus/react-native-true-sheet
 ```
+
 ```sh
-npm i @lodev09/react-native-true-sheet
+npm i @exodus/react-native-true-sheet
 ```
 
 Next, run the following to install it on IOS.
@@ -41,7 +42,7 @@ cd ios && pod install
 ## Usage
 
 ```tsx
-import { TrueSheet } from "@lodev09/react-native-true-sheet"
+import { TrueSheet } from '@exodus/react-native-true-sheet'
 
 export const App = () => {
   const sheet = useRef<TrueSheet>(null)
@@ -61,11 +62,7 @@ export const App = () => {
   return (
     <View>
       <Button onPress={present} title="Present" />
-      <TrueSheet
-        ref={sheet}
-        sizes={['auto', 'large']}
-        cornerRadius={24}
-      >
+      <TrueSheet ref={sheet} sizes={['auto', 'large']} cornerRadius={24}>
         <Button onPress={dismiss} title="Dismiss" />
       </TrueSheet>
     </View>
