@@ -457,7 +457,7 @@ class TrueSheetView: UIView, RCTInvalidating, TrueSheetViewControllerDelegate {
         self.activeIndex = index
         self.isPresented = true
 
-        rvc.present(self.viewController, animated: animated) {
+        rvc.getTopMostViewController().present(self.viewController, animated: animated) {
           if #available(iOS 15.0, *) {
             self.viewController.observeDrag()
           }
