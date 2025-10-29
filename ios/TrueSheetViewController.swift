@@ -13,6 +13,16 @@ struct SizeInfo {
   var value: CGFloat
 }
 
+extension UIViewController {
+    func getTopMostViewController() -> UIViewController {
+        var topController: UIViewController = self
+        while let presentedViewController = topController.presentedViewController {
+            topController = presentedViewController
+        }
+        return topController
+    }
+}
+
 // MARK: - TrueSheetViewControllerDelegate
 
 protocol TrueSheetViewControllerDelegate: AnyObject {
